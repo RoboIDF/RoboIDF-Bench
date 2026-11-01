@@ -1,27 +1,19 @@
 # RoboIDF-Bench
 
-2026-11-01：M0 无真机合成闭环。当前范围：独立合成任务、已知真值参数误差、最终测试轨迹误差及错误模型拒绝。
-
-## 快速开始
+2026-11-01：软件／仿真评测开发版。**v0.2 未发布，M2/M4 真机与数字孪生验收仍待证据。**
 
 ```bash
 pixi install --locked
 pixi run --locked test
-pixi run --locked demo
+pixi run --locked demo-all
 ```
 
-运行结果保存在 `artifacts/`，不提交生成文件。环境为 Linux x86_64 / Python 3.12，依赖由 Pixi 锁定。单独克隆本仓库即可运行。
+Linux x86_64 / Python 3.12，全部依赖由 Pixi 锁定；Core 固定 Git 提交，单独克隆可运行。
 
-## 边界
+- `pixi run demo`：M0 三组真值的独立参数与回放误差，错误模型和无激励拒绝，见 [M0协议](docs/m0.md)。
+- `pixi run compare-demo`：M3 基线与 SciPy 后端的对照，包括连续系统、噪声、失配及零激励；见 [对照协议](docs/comparison.md)。
+- `artifacts/`：可重生成的 JSON 报告，记录配置、种子、数据哈希、模型、误差和失败原因。
 
-M0 只验证离散单自由度质量阻尼系统与离线数据流程，不是机械臂动力学、真实设备辨识或 Agent 实现。Tianji Arm、Wuji Hand 2、安全执行器、MuJoCo / Isaac 后端均未接入。无噪声同模型的精确恢复不代表现实性能。项目许可证尚未确定。
+训练、开发验证与最终测试分离。最终测试数据不进入优化器或激励选择；不能靠更换测试种子或放宽阈值掩盖失败。合成噪声测试不能推断真实机器人性能，连续系统仿真不等于跨机器人引擎验收。
 
-Core 维护 `m0.v1` 合同，Bench 与 Ecosystem 固定 Core Git 版本，升级必须重新运行测试。训练与保留集使用不同激励；最终测试只用于验收。
-
-## 社区协作
-
-见 [贡献指南](CONTRIBUTING.md) 和 [M0 使用说明](docs/m0.md)。问题与贡献请在对应 GitHub 仓库提交，附复现命令、版本、输入来源与实际结果。不要提交凭据、未经授权的真机数据或受限资产。
-
-[Core](https://github.com/RoboIDF/RoboIDF) · [Bench](https://github.com/RoboIDF/RoboIDF-Bench) · [Ecosystem](https://github.com/RoboIDF/RoboIDF-Ecosystem)
-
-[早期规划与历史状态](docs/pre-m0-status.md) 保留作背景，冲突时以本文为准。论文工作及 Overleaf 接入已按用户要求停止，既有文件保留。
+本轮不提供真实数据集、Agent对照或真机成绩。[Core](https://github.com/RoboIDF/RoboIDF) · [Ecosystem](https://github.com/RoboIDF/RoboIDF-Ecosystem) · [贡献指南](CONTRIBUTING.md)。项目许可证待确定。论文工作已停止；[旧说明](docs/pre-m0-status.md)仅作历史参考。

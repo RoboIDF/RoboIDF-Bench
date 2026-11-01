@@ -11,6 +11,8 @@ python = "3.12.*"
 pandoc = ">=3.13,<4"
 tectonic = ">=0.17.0,<0.18"
 pymupdf = ">=1.24.1,<2"
+scipy = ">=1.18.1,<2"
+numpy = ">=2.5.4,<3"
 
 [tasks]
 info = "python -c \"from pathlib import Path; print(Path('README.md').read_text())\""
@@ -21,9 +23,14 @@ cmd = "python scripts/build_paper.py"
 cmd = "python scripts/check_paper.py"
 
 [pypi-dependencies]
-roboidf = { git = "https://github.com/RoboIDF/RoboIDF.git", rev = "8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e" }
+roboidf = { git = "https://github.com/RoboIDF/RoboIDF.git", rev = "d5b00b2c838deee505e69501e080fd23e711eb09" }
 
 [tasks.demo]
 cmd = "python bench.py"
 [tasks.test]
 cmd = "python -m unittest discover -s tests -v"
+
+[tasks.compare-demo]
+cmd = "python comparison.py"
+[tasks.demo-all]
+depends-on = ["demo", "compare-demo"]
