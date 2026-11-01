@@ -32,4 +32,4 @@ pixi run --locked paper-check
 
 ## GitHub 自动编译
 
-`ci/paper.yml` 保存 GitHub Actions 配置草案，尚未启用或在 GitHub 执行。当前 GitHub CLI 授权不包含 workflow 权限；完成相应授权后，将配置移至 `.github/workflows/paper.yml` 并提交，再验证远程运行。现有 GitHub 仓库保存全部写作源与本地编译产物。
+配置位于 `.github/workflows/paper.yml`，在论文、脚本或环境文件变更时编译并检查，保留 PDF、LaTeX 与 Overleaf ZIP 产物；也可手动触发。目前正在完成 workflow 授权，尚未推送并验证远程执行。
