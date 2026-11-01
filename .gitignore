@@ -20,3 +20,6 @@ dist/
 *.out
 *.toc
 *.synctex.gz
+
+artifacts/
+__pycache__/
