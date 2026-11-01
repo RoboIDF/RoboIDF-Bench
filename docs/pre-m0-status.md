@@ -10,7 +10,7 @@
 
 ## 论文草稿
 
-[论文目录与待补证据](papers/README.md) · [RoboIDF-Bench 中文完整初稿 v0.1](papers/roboidf-bench-draft.md)
+[论文目录与待补证据](../papers/README.md) · [RoboIDF-Bench 中文完整初稿 v0.1](../papers/roboidf-bench-draft.md)
 
 2026-11-01：已形成研究协议初稿，覆盖四套件、指标、统计、公平对照与复现要求。
 草稿中的合同字段和验收细则是待评审提案，社区等级沿用 Ecosystem 的 L0–L3；实验表均为待测，尚无评测实现、数据集或成绩。
@@ -84,7 +84,7 @@ pixi run --locked python --version
 
 ## LaTeX 科研写作环境
 
-见 [写作与编译说明](paper/README.md)。使用 `pixi run --locked paper-build` 生成 LaTeX、PDF 与 Overleaf 导入包；使用 `pixi run --locked paper-check` 检查引用和输出。
+见 [写作与编译说明](../paper/README.md)。使用 `pixi run --locked paper-build` 生成 LaTeX、PDF 与 Overleaf 导入包；使用 `pixi run --locked paper-check` 检查引用和输出。
 
 2026-11-01：本地 LaTeX 编译与 PDF 检查通过；已检查全部页面排版。Overleaf 项目链接已收到，导入与同步尚未完成，具体状态见写作说明。
 

@@ -102,7 +102,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/fonts-conda-forge-1-hc364b38_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/python_abi-3.12-9_cp312.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda
-      - pypi: git+https://github.com/RoboIDF/RoboIDF.git?rev=3ca3f9372779373800af3e906d66db19099c3c77#3ca3f9372779373800af3e906d66db19099c3c77
+      - pypi: git+https://github.com/RoboIDF/RoboIDF.git?rev=8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e#8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e
 packages:
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda
   build_number: 20
@@ -1462,7 +1462,7 @@ packages:
   run_exports: {}
   size: 119208
   timestamp: 1792758382821
-- pypi: git+https://github.com/RoboIDF/RoboIDF.git?rev=3ca3f9372779373800af3e906d66db19099c3c77#3ca3f9372779373800af3e906d66db19099c3c77
+- pypi: git+https://github.com/RoboIDF/RoboIDF.git?rev=8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e#8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e
   name: roboidf
   version: 0.1.0
   requires_python: '>=3.12'

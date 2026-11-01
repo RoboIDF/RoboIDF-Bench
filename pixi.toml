@@ -21,7 +21,7 @@ cmd = "python scripts/build_paper.py"
 cmd = "python scripts/check_paper.py"
 
 [pypi-dependencies]
-roboidf = { git = "https://github.com/RoboIDF/RoboIDF.git", rev = "3ca3f9372779373800af3e906d66db19099c3c77" }
+roboidf = { git = "https://github.com/RoboIDF/RoboIDF.git", rev = "8eb34e05a20ebfc3cd96d1c139ec3e9e9991bc7e" }
 
 [tasks.demo]
 cmd = "python bench.py"

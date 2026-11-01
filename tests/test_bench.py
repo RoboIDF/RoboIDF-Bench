@@ -14,3 +14,9 @@ class BenchTests(unittest.TestCase):
         self.assertTrue(evaluate(p,p,91)['passed'])
     def test_deterministic(self):
         self.assertEqual(suite(),suite())
+
+    def test_zero_damping(self):
+        p=Parameters(2,0)
+        self.assertTrue(evaluate(p,p,91)['passed'])
+    def test_divergent_model_fails(self):
+        self.assertFalse(evaluate(Parameters(1e-300,1),Parameters(2,.4),91)['passed'])

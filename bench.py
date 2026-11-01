@@ -3,6 +3,7 @@ import json
 import math
 import random
 from pathlib import Path
+from dataclasses import asdict
 from roboidf import Dataset, Parameters, fit, IdentificationError
 
 PARAMETER_TOLERANCE=1e-7
@@ -19,13 +20,21 @@ def generate(truth,seed,split):
 def evaluate(model,truth,seed):
     test=generate(truth,seed,'test')
     # Independent metric implementation: free rollout, no Core evaluator reuse.
-    prediction=test.velocity[0]; squared=[]
+    prediction=test.velocity[0]; residuals=[]
+    model_record=asdict(model); truth_record=asdict(truth)
     for i,force in enumerate(test.effort):
         prediction=(1-test.dt*model.damping/model.mass)*prediction+test.dt*force/model.mass
-        squared.append((prediction-test.velocity[i+1])**2)
-    rmse=math.sqrt(sum(squared)/len(squared))
-    errors={'mass':abs(model.mass/truth.mass-1),'damping':abs(model.damping/truth.damping-1)}
+        residual=prediction-test.velocity[i+1]
+        if not math.isfinite(residual):
+            return {'passed':False,'reason':'DIVERGENT_ROLLOUT','model':model_record,
+                    'truth':truth_record,'test_seed':seed,'test_sha256':test.digest()}
+        residuals.append(residual)
+    rmse=math.hypot(*residuals)/math.sqrt(len(residuals))
+    # Relative to a declared floor for zero-valued parameters.
+    errors={key:abs(model_record[key]-value)/max(abs(value),1e-12)
+            for key,value in truth_record.items()}
     return {'test_seed':seed,'test_sha256':test.digest(),'parameter_relative_error':errors,
+            'model':model_record,'truth':truth_record,
             'rollout_rmse_m_s':rmse,'passed':max(errors.values())<=PARAMETER_TOLERANCE and rmse<=ROLLOUT_TOLERANCE}
 
 def suite():
